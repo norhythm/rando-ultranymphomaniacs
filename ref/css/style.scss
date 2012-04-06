@@ -1,0 +1,496 @@
+$width: 960px;
+
+@mixin path($path) {
+	background-image: url(../images/#{$path});
+}
+
+@mixin br($lt, $rt, $rb, $lb) {
+	-webkit-border-radius: $lt $rt $rb $lb;
+	-moz-border-radius: $lt $rt $rb $lb;
+	-o-border-radius: $lt $rt $rb $lb;
+	-ms-border-radius: $lt $rt $rb $lb;
+	border-radius: $lt $rt $rb $lb;
+}
+
+@mixin tf($prop) {
+	-webkit-transform: $prop;
+	-moz-transform: $prop;
+	-o-transform: $prop;
+	-ms-transform: $prop;
+	transform: $prop;
+}
+
+@mixin ts($x, $y, $d, $r, $b, $g, $a) {
+	-webkit-text-shadow: $x $y $d rgba($r, $g, $b, $a);
+	-moz-text-shadow: $x $y $d rgba($r, $g, $b, $a);
+	-o-text-shadow: $x $y $d rgba($r, $g, $b, $a);
+	-ms-text-shadow: $x $y $d rgba($r, $g, $b, $a);
+	text-shadow: $x $y $d rgba($r, $g, $b, $a);
+}
+
+@mixin bs($x, $y, $d, $r, $b, $g, $a) {
+	-webkit-box-shadow: $x $y $d rgba($r, $g, $b, $a);
+	-moz-box-shadow: $x $y $d rgba($r, $g, $b, $a);
+	-o-box-shadow: $x $y $d rgba($r, $g, $b, $a);
+	-ms-box-shadow: $x $y $d rgba($r, $g, $b, $a);
+	text-shadow: $x $y $d rgba($r, $g, $b, $a);
+}
+
+@mixin transition($prop, $duration, $time, $delay) {
+	-webkit-transition-property: $prop;
+	-webkit-transition-duration: $duration;
+	-webkit-transition-timing-function: $time;
+	-webkit-transition-delay: $delay;
+
+	-moz-transition-property: $prop;
+	-moz-transition-duration: $duration;
+	-moz-transition-timing-function: $time;
+	-moz-transition-delay: $delay;
+
+	-o-transition-property: $prop;
+	-o-transition-duration: $duration;
+	-o-transition-timing-function: $time;
+	-o-transition-delay: $delay;
+
+	-ms-transition-property: $prop;
+	-ms-transition-duration: $duration;
+	-ms-transition-timing-function: $time;
+	-ms-transition-delay: $delay;
+
+	transition-property: $prop;
+	transition-duration: $duration;
+	transition-timing-function: $time;
+	transition-delay: $delay;
+}
+
+@mixin bgg($color1, $color2) {
+	background: $color2;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color1), color-stop(100%,$color2));
+	background: -webkit-linear-gradient(top, $color1 0%,$color2 100%);
+	background: -moz-linear-gradient(top, $color1 0%, $color2 100%);
+	background: -o-linear-gradient(top, $color1 0%,$color2 100%);
+	background: -ms-linear-gradient(top, $color1 0%,$color2 100%);
+	background: linear-gradient(top, $color1 0%,$color2 100%);
+}
+
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	text-align: left;
+	color: #ffffff;
+	font-size: 0.85em;
+	line-height: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	line-height: 1;
+}
+
+ul,
+li {
+	list-style: none;
+	list-style-position: outside;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-style: none;
+	text-decoration: none;
+	vertical-align: top;
+}
+
+object,
+embed{
+	vertical-align: bottom;
+}
+
+input {
+	vertical-align: middle;
+}
+
+a {
+	text-decoration: none;
+	color: #c90a4f;
+}
+
+a:hover {
+	color: #aaaaaa;
+}
+
+a:focus {
+	outline: none;
+}
+
+table,
+table th,
+table td{
+	border-collapse: collapse;
+	text-align: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.clearfix::before,
+.clearfix::after {
+	content: "";
+	display: table;
+}
+
+.clearfix::after {
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	//overflow: hidden;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	font-family: "MS PMincho", "Hiragino Mincho Pro", "Times New Roman", Georgia, serif;
+	//overflow: auto;
+}
+
+#bg {
+	width: 100%;
+	height: 100%;
+	@include path("bg_image.jpg");
+	background-position: center top;
+	background-repeat: repeat-y;
+	background-attachment: fixed;
+	background-size: 100% auto;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	
+	img {
+		display: none;
+		width: 100%;
+		height: auto;
+	}
+	
+	div {
+		width: 100%;
+		height: 100%;
+		@include path("bg_dot.gif");
+		background-position: left top;
+		background-repeat: repeat;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
+
+#header {
+	padding: 25% 0 20% 0;
+	text-align: center;
+	
+	div {
+		padding: 5% 0;
+	}
+}
+
+#container {
+	width: $width + 40px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 1;
+}
+
+#content {
+	width: $width;
+	margin: 0 auto;
+	padding: 0 0 40px 0;
+	
+	.info {
+		margin: 0 0 40px 0;
+		background-color: #000000;
+		background-color: rgba(0, 0, 0, 0.8);
+		//@include tf(rotate(-3deg));
+		@extend .clearfix;
+		
+		.figure,
+		.detail {
+			float: left;
+			//@include tf(rotate(3deg));
+		}
+		
+		.figure {
+			width: $width / 2;
+			padding: 40px 0;
+			text-align: center;
+			
+			img {
+				@include bs(1px, 1px, 10px, 255, 255, 255, 0.5);
+				
+			}
+		}
+		
+		.detail {
+			width: $width / 2 - 40px;
+			padding: 40px 0;
+			
+			h2 {
+				display: inline;
+				background-color: #c90a4f;
+				font-size: 2em;
+				font-weight: bold;
+				font-style: italic;
+			}
+			
+			dl {
+				margin: 2em 0 2em 0;
+				
+				line-height: 1.6em;
+								
+				dt {
+					width: 8em;
+				}
+				
+				dd {
+					margin: -1.6em 0 0 6em;
+				}
+			}
+			
+			p {
+				line-height: 1.5em;
+			}
+		}
+	}
+	
+	.track {
+		margin: 0 0 40px 0;
+		padding: 40px 0 20px 0;
+		background-color: #000000;
+		background-color: rgba(0, 0, 0, 0.8);
+	
+		.sample {
+			width: $width - 80px;
+			margin: 0 auto;
+		}
+		
+		table {
+			width: $width - 80px;
+			margin: 20px auto 0 auto;
+			
+			th {
+				width: 10%;
+				padding: 1em 0;
+				font-weight: normal;
+			}
+			
+			td {
+				width: 90%;
+				padding: 1em 0;
+				
+				h3 {
+					font-size: 1em;
+					letter-spacing: 0.1em;
+					position: relative;
+				}
+				
+				span {
+					color: #222222;
+					letter-spacing: 1em;
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: -1;
+				}
+			}
+		}
+	}
+	
+	.credit {
+		margin: 0 0 40px 0;
+		padding: 20px 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		
+		table {
+			width: $width - 80px;
+			margin: 0 auto;
+			
+			th {
+				width: 25%;
+				padding: 1em 0;
+				font-weight: normal;
+			}
+			
+			td {
+				width: 25%;
+				padding: 1em 0;
+			}
+		}
+	}
+	
+	.wallpaper{
+		margin: 0 0 40px 0;
+		padding: 20px 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		
+		img {
+			margin: 0 0 0.5em 
+		}
+		
+		table {
+			width: $width - 80px;
+			margin: 0 auto;
+			
+			td {
+				width: 220px;
+				padding: 1em 0;
+				text-align: center;
+				
+				&.column {
+					width: 110px;	
+				}
+			}
+		}
+	}
+	
+	.banner {
+		margin: 0 0 40px 0;
+		padding: 20px 0 40px 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		
+		table {
+			width: $width - 80px;
+			margin: 0 auto 20px auto;
+			
+			th {
+				width: 50%;
+				padding: 1em 0;
+				text-align: center;
+				font-weight: normal;
+			}
+			
+			td {
+				width: 50%;
+				padding: 1em 0;
+				text-align: center;
+			}
+		}
+		
+		p {
+			margin: 0 0 1em 0;
+			text-align: center;
+		}
+
+	}
+}
+
+#footer {
+	width: 100%;
+	@include bgg(#e40e58, #c90a4f);
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+	
+	address {
+		padding: 10px 0;
+		font-style: normal;
+		line-height: 21px;
+		
+		h2 {
+			display: inline-block;
+			padding: 0 1em 0 0;
+			font-size: 1em;	
+		}
+		
+		span {
+			display: inline-block;
+			height: 21px;		
+			overflow: hidden;
+			vertical-align: top;
+		}
+		
+		a {
+			color: #ffffff;
+			
+			&:hover {
+				color: #aaaaaa;
+			}
+		}
+	}
+}
+
+
+.no-backgroundsize {
+	
+	#bg {
+		background: none;
+		
+		img {
+			display: block;	
+		}
+	}
+}
+
+.no-rgba {
+
+	.info,
+	.track,
+	.credit,
+	.wallpaper,
+	.banner {
+		background-color: #000000;
+	}
+}
+
+.ie6 {
+
+	#bg {
+		position: absolute;
+		top: expression(eval(document.documentElement.scrollTop+0));
+	}
+	
+	#footer {
+		//position: absolute;
+		//bottom: expression(eval(document.documentElement.scrollTop+0));
+	}
+}
+
+.ie6,
+.ie7 {
+	#footer {
+		address {
+			h2,
+			span {
+				display: inline;
+				zoom: 1;
+			}
+		}
+	}
+}
+
+.touch {
+	#footer {
+		position: relative;
+	}
+}
+
+
